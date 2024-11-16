@@ -7,7 +7,6 @@ import { GeistSans } from "geist/font/sans";
 import { ThemeProvider } from "next-themes";
 import Link from "next/link";
 import "./globals.css";
-import { TopNav } from "@/components/layout/top-nav";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -35,7 +34,7 @@ export default function RootLayout({
         >
           <main className="min-h-screen flex flex-col items-center">
             <div className="flex-1 w-full flex flex-col gap-20 items-center">
-              {/* <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
+              <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
                 <div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
                   <div className="flex gap-5 items-center font-semibold">
                     <Link href={"/"}>Next.js Supabase Starter</Link>
@@ -43,18 +42,10 @@ export default function RootLayout({
                       <DeployButton />
                     </div>
                   </div>
-                  
+                  {!hasEnvVars ? <EnvVarWarning /> : <HeaderAuth />}
                 </div>
-              </nav> */}
-              <nav className="fixed top-0 w-full flex justify-center border-b border-b-foreground/10 h-16 bg-background z-10">
-                <div className="w-full flex justify-between items-center p-3 px-5 text-sm">
-                  <TopNav /> 
-                  {!hasEnvVars ? <EnvVarWarning /> : <HeaderAuth />} 
-                </div>
-                {/* <ThemeSwitcher /> */}
               </nav>
-              
-              <div className="flex flex-col gap-20 w-full pt-20">
+              <div className="flex flex-col gap-20 max-w-5xl p-5">
                 {children}
               </div>
 
@@ -62,15 +53,15 @@ export default function RootLayout({
                 <p>
                   Powered by{" "}
                   <a
-                    href="#"
+                    href="https://supabase.com/?utm_source=create-next-app&utm_medium=template&utm_term=nextjs"
                     target="_blank"
                     className="font-bold hover:underline"
                     rel="noreferrer"
                   >
-                    DTY
+                    Supabase
                   </a>
                 </p>
-                
+                <ThemeSwitcher />
               </footer>
             </div>
           </main>
